@@ -1,24 +1,22 @@
-import React, {FC} from "react"
 
-import './SearchResults.css'
-
-type FullList = {
-    id: number,
-    title: string,
-    rating: number
+type FullListProps = {
+    fullList: {
+        id: number
+        title: string
+        rating: number
+    }[]
 }
 
-interface FullListProps {
-    movie: FullList,
-}
+export const FullList = (props: FullListProps) => {
+    
 
-const SearchResults = (props: FullList) => {
     return (
-        <div className="SearchResults">
-            Results
-            {}
+        <div>
+            {props.fullList.map(movie => {
+                return(
+                    <p>id: {movie.id} Title: {movie.title} Rating: {movie.rating}</p>
+                )
+            })}
         </div>
     )
 }
-
-export default SearchResults;

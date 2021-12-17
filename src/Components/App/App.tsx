@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
-import { Greet } from '../greet/greet';
+
+import { FullList } from '../SearchResults/SearchResults';
 import './App.css';
 
 
@@ -10,16 +11,14 @@ const App = () => {
     {id: 2, title: 'Movie 2', rating: 70},
     {id: 3, title: 'Movie 3', rating: 50},
     {id: 4, title: 'Movie 4', rating: 100},
-  ])
-
-  const [state, setState] = useState('test');
+  ]);
 
   return (
     <div className="App">
       <header className="App-header">
         Comedy Movies
       </header>
-        <Greet fullList={fullList}/>
+        <FullList fullList={fullList}/>
       <div>
 
       </div>
