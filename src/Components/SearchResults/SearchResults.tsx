@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import React, { ReactNode, useState } from "react"
+
 
 type FullListProps = {
     fullList: {
@@ -11,16 +12,15 @@ type FullListProps = {
         title: string;
         rating: number;
     }[]>>
+    allComedyMovies: any
 }
 
 export const SearchResults = (props: FullListProps) => {
     
     const [searchTerm, setSearchTerm] = useState('');
-    const [toggle, setToggle] = useState<boolean>(false)
-
+    const [toggle, setToggle] = useState<boolean>(false);
 
     const searchMovies = (event: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(event.target.value);
         setSearchTerm(event.target.value);
         
     }
@@ -38,6 +38,8 @@ export const SearchResults = (props: FullListProps) => {
             console.log(toggle);
         } 
     }
+
+    console.log(props.allComedyMovies);
 
     return (
         <div>
@@ -57,12 +59,15 @@ export const SearchResults = (props: FullListProps) => {
                     } else if (movieList.title.toLowerCase().includes(searchTerm.toLowerCase())) {
                         return movieList
                     } 
-                    return console.log('error')
+                    return console.log('no filter');
                 }).map((val, key) => {
                     return(
                         <p>ID: {val.id} TITLE: {val.title} RATING: {val.rating}</p>
                     )
                 })}
+            </div>
+            <div>
+                {/* <h3>{props.fullList[1]}</h3> */}
             </div>
         </div>
     )
