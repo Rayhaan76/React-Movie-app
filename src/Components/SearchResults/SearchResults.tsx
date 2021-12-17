@@ -13,6 +13,7 @@ type FullListProps = {
         rating: number;
     }[]>>
     allComedyMovies: any
+    setAllComedyMovies: any
 }
 
 export const SearchResults = (props: FullListProps) => {
@@ -27,13 +28,13 @@ export const SearchResults = (props: FullListProps) => {
 
     const sortRating = () => {
         if(toggle === false) {
-            const sorted = [...props.fullList].sort((a, b) => b.rating - a.rating);
-            props.setFullList(sorted);
+            const sorted = [...props.allComedyMovies].sort((a, b) => b.vote_average - a.vote_average);
+            props.setAllComedyMovies(sorted);
             setToggle(true);
             console.log(toggle);
         } else if (toggle === true) {
-            const sorted = [...props.fullList].sort((a, b) => a.rating - b.rating);
-            props.setFullList(sorted);
+            const sorted = [...props.allComedyMovies].sort((a, b) => a.vote_average - b.vote_average);
+            props.setAllComedyMovies(sorted);
             setToggle(false);
             console.log(toggle);
         } 
@@ -53,16 +54,16 @@ export const SearchResults = (props: FullListProps) => {
             <button onClick={sortRating}> Sort by rating</button>
 
             <div>
-                {props.fullList.filter((movieList) => {
+                {props.allComedyMovies.filter((movieList: { title: string; }) => {
                     if (searchTerm === '') {
                         return movieList;
                     } else if (movieList.title.toLowerCase().includes(searchTerm.toLowerCase())) {
                         return movieList
                     } 
                     return console.log('no filter');
-                }).map((val, key) => {
+                }).map((val: {title: string; vote_average: number}, key: number) => {
                     return(
-                        <p>ID: {val.id} TITLE: {val.title} RATING: {val.rating}</p>
+                        <p>TITLE: {val.title} RATING: {val.vote_average}</p>
                     )
                 })}
             </div>

@@ -37,7 +37,7 @@ const App = () => {
       <header className="App-header">
         Comedy Movies
       </header>
-        <SearchResults fullList={fullList} setFullList={setFullList} allComedyMovies={allComedyMovies}/>
+        <SearchResults fullList={fullList} setFullList={setFullList} allComedyMovies={allComedyMovies} setAllComedyMovies={setAllComedyMovies}/>
       <div>
 
       </div>
