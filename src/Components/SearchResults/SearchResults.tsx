@@ -1,23 +1,22 @@
-import React, { ReactNode, useState } from "react"
+import React, { ReactNode, useState, useEffect } from "react"
 
+import {getComedyMovies} from '../Moviedb/Moviedb'
 
-type FullListProps = {
-    fullList: {
-        id: number
-        title: string
-        rating: number
-    }[]
-    setFullList: React.Dispatch<React.SetStateAction<{
-        id: number;
-        title: string;
-        rating: number;
-    }[]>>
-    allComedyMovies: any
-    setAllComedyMovies: any
-}
-
-export const SearchResults = (props: FullListProps) => {
+export const SearchResults = () => {
     
+    const [allComedyMovies, setAllComedyMovies] = useState<any>([]);
+
+    const loadData = async () => {
+      const testing = await getComedyMovies();
+      console.log(testing);
+      setAllComedyMovies(testing);
+      console.log(testing);
+    }
+    
+    useEffect(() => {
+        loadData();
+    }, [])
+
     const [searchTerm, setSearchTerm] = useState('');
     const [toggle, setToggle] = useState<boolean>(false);
 
@@ -28,19 +27,27 @@ export const SearchResults = (props: FullListProps) => {
 
     const sortRating = () => {
         if(toggle === false) {
-            const sorted = [...props.allComedyMovies].sort((a, b) => b.vote_average - a.vote_average);
-            props.setAllComedyMovies(sorted);
+            const sorted = [...allComedyMovies].sort((a, b) => b.vote_average - a.vote_average);
+            setAllComedyMovies(sorted);
             setToggle(true);
             console.log(toggle);
         } else if (toggle === true) {
-            const sorted = [...props.allComedyMovies].sort((a, b) => a.vote_average - b.vote_average);
-            props.setAllComedyMovies(sorted);
+            const sorted = [...allComedyMovies].sort((a, b) => a.vote_average - b.vote_average);
+            setAllComedyMovies(sorted);
             setToggle(false);
             console.log(toggle);
         } 
     }
 
-    console.log(props.allComedyMovies);
+    console.log(allComedyMovies);
+
+    // if (allComedyMovies.length === 0) {
+    //     return (
+    //         <div>
+    //             loading
+    //         </div>
+    //     )
+    // }
 
     return (
         <div>
@@ -54,7 +61,11 @@ export const SearchResults = (props: FullListProps) => {
             <button onClick={sortRating}> Sort by rating</button>
 
             <div>
-                {props.allComedyMovies.filter((movieList: { title: string; }) => {
+                {allComedyMovies.length}
+            </div>
+            
+            <div>
+                {allComedyMovies.filter((movieList: { title: string; }) => {
                     if (searchTerm === '') {
                         return movieList;
                     } else if (movieList.title.toLowerCase().includes(searchTerm.toLowerCase())) {
@@ -66,9 +77,6 @@ export const SearchResults = (props: FullListProps) => {
                         <p>TITLE: {val.title} RATING: {val.vote_average}</p>
                     )
                 })}
-            </div>
-            <div>
-                {/* <h3>{props.fullList[1]}</h3> */}
             </div>
         </div>
     )
