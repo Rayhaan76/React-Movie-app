@@ -2,7 +2,12 @@ import React, { ReactNode, useState, useEffect } from "react"
 
 import {getComedyMovies} from '../Moviedb/Moviedb'
 
-export const SearchResults = () => {
+type MovieProps = {
+    movies: any
+    setMovies: any
+}
+
+export const SearchResults = (props: MovieProps) => {
     
     const [allComedyMovies, setAllComedyMovies] = useState<any>([]);
 
@@ -27,19 +32,19 @@ export const SearchResults = () => {
 
     const sortRating = () => {
         if(toggle === false) {
-            const sorted = [...allComedyMovies].sort((a, b) => b.vote_average - a.vote_average);
-            setAllComedyMovies(sorted);
+            const sorted = [...props.movies].sort((a, b) => b.vote_average - a.vote_average);
+            props.setMovies(sorted);
             setToggle(true);
             console.log(toggle);
         } else if (toggle === true) {
-            const sorted = [...allComedyMovies].sort((a, b) => a.vote_average - b.vote_average);
-            setAllComedyMovies(sorted);
+            const sorted = [...props.movies].sort((a, b) => a.vote_average - b.vote_average);
+            props.setMovies(sorted);
             setToggle(false);
             console.log(toggle);
         } 
     }
 
-    console.log(allComedyMovies);
+    console.log(props.movies);
 
     // if (allComedyMovies.length === 0) {
     //     return (
@@ -61,11 +66,11 @@ export const SearchResults = () => {
             <button onClick={sortRating}> Sort by rating</button>
 
             <div>
-                {allComedyMovies.length}
+                {/* {props.movies[1].title} */}
             </div>
             
             <div>
-                {allComedyMovies.filter((movieList: { title: string; }) => {
+                {props.movies.filter((movieList: { title: string; }) => {
                     if (searchTerm === '') {
                         return movieList;
                     } else if (movieList.title.toLowerCase().includes(searchTerm.toLowerCase())) {

@@ -9,25 +9,25 @@ export const getComedyMovies = () => fetch('https://api.themoviedb.org/3/discove
         return array;
     });
 
-export const getComedyMovies2 = (array76: any[])  => {
+export const getComedyMovies2 = async (): Promise<any>  => {
     
     fetch('https://api.themoviedb.org/3/discover/movie?api_key=30681930d9f8a4d49ec75249be9647a1&with_genres=35&page=1')
         .then(result => result.json())
         .then(resp => {
-            array76.push(...resp.results);
+            return resp.results;
         });
 
 }
 
-export const getComedyMovies3 = async () => {
+// export const getComedyMovies3 = async () => {
 
-    let array42: any[] = [];
+//     let array42: any[] = [];
 
-    await getComedyMovies2(array42);
+//     await getComedyMovies2(array42);
 
-    console.log(array42);
+//     console.log(array42);
 
-    return array42;
+//     return array42;
 
 
-}
+// }
