@@ -5,6 +5,7 @@ import './SearchResults.css'
 type MovieProps = {
     movies: any
     setMovies: any
+    unsorted: any
 }
 
 export const SearchResults = (props: MovieProps) => {
@@ -18,7 +19,7 @@ export const SearchResults = (props: MovieProps) => {
     }
 
     const sortRating = () => {
-        if(toggle === false || toggle === undefined) {
+        if(toggle === undefined) {
             const sorted = [...props.movies].sort((a, b) => b.vote_average - a.vote_average);
             props.setMovies(sorted);
             setToggle(true);
@@ -26,7 +27,10 @@ export const SearchResults = (props: MovieProps) => {
             const sorted = [...props.movies].sort((a, b) => a.vote_average - b.vote_average);
             props.setMovies(sorted);
             setToggle(false);
-        } 
+        } else if (toggle === false) {
+            props.setMovies(props.unsorted);
+            setToggle(undefined);
+        }
     }
     //console.log(toggle);
     //console.log(props.movies);
@@ -34,11 +38,11 @@ export const SearchResults = (props: MovieProps) => {
     let button;
 
     if(toggle === undefined) {
-        button = <span>Sort by Rating</span>
+        button = <span>Sort Rating</span>
     } else if (toggle === true) {
-        button = <span>Sort by Rating: Asc</span>
+        button = <span>Sort Rating: Asc</span>
     } else if (toggle === false) {
-        button = <span>Sort by Rating: Desc</span>
+        button = <span>Sort Rating: Desc</span>
     }
 
     return (

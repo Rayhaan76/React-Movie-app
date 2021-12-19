@@ -9,6 +9,7 @@ const App = () => {
   //NOTE: Sometimes the sorting can cause a movie to get stuck at the top of the list. 
   //I do not know what causes it, however it only seems to happen rarely. 
 
+  const [unsorted, setUnsorted] = useState([]);
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -39,6 +40,7 @@ const App = () => {
       .then((data) => {
         array.push(...data.results);
         setMovies(array);
+        setUnsorted(array);
       });
   }, [])
 
@@ -53,7 +55,7 @@ const App = () => {
         Popular Comedy Movies
       </header>
 
-      <SearchResults movies={movies} setMovies={setMovies}/>
+      <SearchResults movies={movies} setMovies={setMovies} unsorted={unsorted}/>
       
     </div>
   )
