@@ -43,3 +43,9 @@ td {
 .Title-header, .Title-data {
   padding-left: 15px;
 }
+
+.Search-sort-header {
+  background-color: white;
+  position: sticky;
+  top: 0;
+}

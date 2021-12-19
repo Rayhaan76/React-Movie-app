@@ -47,16 +47,17 @@ export const SearchResults = (props: MovieProps) => {
 
     return (
         <div>
+            <div className="Search-sort-header">
+                <input 
+                    type='text'
+                    placeholder="Search..."
+                    onChange={searchMovies}
+                    className="Search-input"
+                />
 
-            <input 
-                type='text'
-                placeholder="Search..."
-                onChange={searchMovies}
-                className="Search-input"
-            />
+                <button className="Sort-button" onClick={sortRating}>{button}</button>
+            </div>
 
-            <button className="Sort-button" onClick={sortRating}>{button}</button>
-            
             <div className="List-container">
                 <table className="Movie-table">
                     <tbody>
