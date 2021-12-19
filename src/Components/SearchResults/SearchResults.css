@@ -38,3 +38,7 @@ td {
   padding-top: 0.5em;
   padding-bottom: 0.5em;
 }
+
+.Title-header, .Title-data {
+  padding-left: 15px;
+}

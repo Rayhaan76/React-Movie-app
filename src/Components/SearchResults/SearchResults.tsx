@@ -57,7 +57,7 @@ export const SearchResults = (props: MovieProps) => {
                 <table className="Movie-table">
                     <tbody>
                     <tr>
-                        
+                        <th className="Image-header"></th>
                         <th className="Title-header">Title</th>
                         <th className="Rating-header" onClick={sortRating}>Rating</th>
                     </tr>
@@ -69,10 +69,10 @@ export const SearchResults = (props: MovieProps) => {
                             return movieList
                         } 
                         return console.log('no filter');
-                    }).map((val: {id: number; title: string; vote_average: number}, key: number) => {
+                    }).map((val: {id: number; title: string; poster_path: string;vote_average: number}, key: number) => {
                         return(
                             <tr key={val.id}>
-                                
+                                <td className="Image-data"><img alt="Movie poster" src={`https://image.tmdb.org/t/p/w92/${val.poster_path}`}/></td>
                                 <td className="Title-data" key={val.title}>{val.title}</td>
                                 <td className="Rating-data" key={val.vote_average}>{val.vote_average}</td>
                             </tr>
