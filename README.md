@@ -1,6 +1,6 @@
 # React TypeScript project
 
-This is the React Developer test - YOU Agency
+This app uses React and TypeScript.
 
 The app displays a list of 100 popular comedy movies. 
 The list is filterable with the search input and sorted using the sort button.
