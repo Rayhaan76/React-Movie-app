@@ -1,5 +1,7 @@
 # React TypeScript project
 
+https://dreamy-turing-a48f22.netlify.app/
+
 This app uses React and TypeScript.
 
 The app displays a list of 100 popular comedy movies. 
